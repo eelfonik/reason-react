@@ -8,6 +8,12 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var component = ReasonReact.reducerComponent("Example");
 
+function toggleMsg(_, _self) {
+  Curry._1(_self[/* send */3], /* Toggle */1);
+  console.log("hhhhh");
+  return /* () */0;
+}
+
 function make(greeting, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
@@ -27,9 +33,7 @@ function make(greeting, _) {
                                   return Curry._1(self[/* send */3], /* Click */0);
                                 })
                             }, message), React.createElement("button", {
-                              onClick: (function () {
-                                  return Curry._1(self[/* send */3], /* Toggle */1);
-                                })
+                              onClick: Curry._1(self[/* handle */0], toggleMsg)
                             }, "Toggle greeting"), match ? greeting : null);
             }),
           /* initialState */(function () {
@@ -57,5 +61,6 @@ function make(greeting, _) {
 }
 
 exports.component = component;
+exports.toggleMsg = toggleMsg;
 exports.make = make;
 /* component Not a pure module */

@@ -13,6 +13,11 @@ type action =
    Needs to be **after** state and action declarations! */
 let component = ReasonReact.reducerComponent("Example");
 
+let toggleMsg = (_event, _self) => {
+  _self.ReasonReact.send(Toggle);
+  Js.log("hhhhh");
+};
+
 /* greeting and children are props. `children` isn't used, therefore ignored.
    We ignore it by prepending it with an underscore */
 let make = (~greeting, _children) => {
@@ -35,7 +40,7 @@ let make = (~greeting, _children) => {
       <button onClick=(_event => self.send(Click))>
         (ReasonReact.string(message))
       </button>
-      <button onClick=(_event => self.send(Toggle))>
+      <button onClick=(self.handle(toggleMsg))>
         (ReasonReact.string("Toggle greeting"))
       </button>
       (self.state.show ? ReasonReact.string(greeting) : ReasonReact.null)
